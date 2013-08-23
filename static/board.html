@@ -18,9 +18,9 @@
         function renderBoard() {
             var gridElement = $('#grid');
             gridElement.empty();
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < board.rows; i++) {
                 var row = $('<tr><\tr>');
-                for (var j = 0; j < 10; j++) {
+                for (var j = 0; j < board.columns; j++) {
                     if (knight.currentPosition.x == i && knight.currentPosition.y == j)
                         row.append($("<td class=" + "\"current\"" + "></td> "));
                     else if (board.isLegalMove(new Coordinate(i, j)))
