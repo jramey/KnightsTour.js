@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Knights Tour</title>
+    <link rel="stylesheet" href="board.css" />
+</head>
+<body>
+    <script src="board.js"></script> 
+    <script src="coordinate.js"></script> 
+    <script src="knight.js"></script> 
+    <script src="jquery-2.0.3.min.js"></script> 
+    <script type="text/javascript">
+        var knight = new Knight();
+        var board = new Board(knight);
+
+        function renderBoard() {
+            var gridElement = $('#grid');
+            gridElement.empty();
+            for (var i = 0; i < 10; i++) {
+                var row = $('<tr><\tr>');
+                for (var j = 0; j < 10; j++) {
+                    if (knight.currentPosition.x == i && knight.currentPosition.y == j)
+                        row.append($("<td class=" + "\"current\"" + "></td> "));
+                    else if (board.isLegalMove(new Coordinate(i, j)))
+                        row.append($("<td class=" + "\"posibleMove\"" + "></td> "));
+                    else if(board.hasSpaceBeenVisited(new Coordinate(i, j)))
+                        row.append($("<td class=" + "\"visited\"" + "></td> "));
+                    else if (i % 2 == 0 && j % 2 == 0)
+                        row.append($("<td class=" + "\"white\"" + "></td> "));
+                    else if (i % 2 == 0 && j % 2 > 0)
+                        row.append($("<td class=" + "\"black\"" + "></td> "));
+                    else if (i % 2 > 0 && j % 2 ==  0)
+                        row.append($("<td class=" + "\"black\"" + "></td> "));
+                    else if (i % 2 > 0 && j % 2 > 0)
+                        row.append($("<td class=" + "\"white\"" + "></td> "));
+                }
+
+                gridElement.append(row);
+            }
+        }
+
+        $(document).ready(renderBoard);
+
+        function addScore() {
+            var score = board.turns;
+            $('#score').html(score);
+        }
+
+        function movePiece(space) {
+            knight.visitSpace(space);
+            board.addToVisitedSpaces(space)
+            addScore();
+            renderBoard();
+        }
+
+        function undoMove() {
+            if (board.turns > 1) {
+                var space = board.undoMove();
+                knight.visitSpace(space);
+                addScore();
+                renderBoard();
+            }
+        }
+
+        $(document).on('click', 'td', function (e) {
+            var colIndex = $(this).index();
+            var rowIndex = $(this).closest("tr").index();
+            var space = new Coordinate(rowIndex, colIndex);
+            if (board.isLegalMove(space)) {
+                movePiece(space);
+            }
+        });
+
+        $(document).on('click', '#undo', function (e) {
+            undoMove();
+        });
+    </script>
+     <p id="score"></p>
+     
+    <div>
+        <table id="grid"></table>
+        <button id="undo" type="button">Undo</button>
+    </div>   
+</body>
+</html>

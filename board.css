@@ -1,0 +1,55 @@
+﻿#grid
+{
+    border: 2px solid black;
+}
+
+#grid td
+{
+    height: 90px;
+    width: 90px;
+}
+
+#score
+{
+    float: right;
+    font-size: 100px;
+    margin-right:500px;
+}
+
+#undo
+{
+    float: right;
+    font-size: 40px;
+    margin-right: 600px;
+    margin-top: -50px;
+}
+
+.black
+{
+    background-color: #000;
+}
+
+.white
+{
+    background-color: #fff
+}
+
+.current
+{
+    background-image: url('k.png');
+    background-position: center; 
+    background-repeat: no-repeat    
+}
+
+.visited
+{
+    background-color: dimgray;
+    background-image: url('x.png');
+    background-position: center; 
+    background-repeat: no-repeat    
+}
+
+.posibleMove
+{
+     background-color: royalblue;
+}
