@@ -6,7 +6,7 @@
     <title>Knights Tour</title>
     <link rel="stylesheet" href="board.css" />
 </head>
-<body>
+<body oncontextmenu="return false;">
     <script src="board.js"></script> 
     <script src="coordinate.js"></script> 
     <script src="knight.js"></script> 
@@ -73,15 +73,15 @@
             }
         });
 
-        $(document).on('click', '#undo', function (e) {
-            undoMove();
+        $(document).mousedown(function (e) {
+            if (e.button == 2)
+                undoMove();
         });
     </script>
      <p id="score"></p>
      
     <div>
         <table id="grid"></table>
-        <button id="undo" type="button">Undo</button>
     </div>   
 </body>
 </html>
