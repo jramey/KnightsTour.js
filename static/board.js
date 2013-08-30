@@ -13,7 +13,7 @@
 
     this.addToVisitedSpaces = function addToVisitedSpaces(space) {
         this.visitedSpaces.push(space);
-        this.turns++;
+        this.incrementTurn();
     }
 
     this.hasSpaceBeenVisited = function hasSpaceBeenVisited(space) {
@@ -26,8 +26,16 @@
 
     this.undoMove = function undoMoce() {
         this.visitedSpaces.pop();
-        this.turns--;
+        this.regressTurn();
 
         return this.visitedSpaces[this.visitedSpaces.length - 1];
+    }
+
+    this.incrementTurn = function incrementTurn() {
+        this.turns++;
+    }
+
+    this.regressTurn = function regressTurn() {
+        this.turns--;
     }
 }

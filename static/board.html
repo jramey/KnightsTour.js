@@ -20,23 +20,23 @@
             gridElement.empty();
             for (var i = 0; i < board.rows; i++) {
                 var row = $('<tr><\tr>');
-                for (var j = 0; j < board.columns; j++) {
-                    if (knight.currentPosition.x == i && knight.currentPosition.y == j)
-                        row.append($("<td class=" + "\"current\"" + "></td> "));
-                    else if (board.isLegalMove(new Coordinate(i, j)))
-                        row.append($("<td class=" + "\"posibleMove\"" + "></td> "));
-                    else if(board.hasSpaceBeenVisited(new Coordinate(i, j)))
-                        row.append($("<td class=" + "\"visited\"" + "></td> "));
-                    else if (i % 2 == 0 && j % 2 == 0)
-                        row.append($("<td class=" + "\"white\"" + "></td> "));
-                    else if (i % 2 == 0 && j % 2 > 0)
-                        row.append($("<td class=" + "\"black\"" + "></td> "));
-                    else if (i % 2 > 0 && j % 2 ==  0)
-                        row.append($("<td class=" + "\"black\"" + "></td> "));
-                    else if (i % 2 > 0 && j % 2 > 0)
-                        row.append($("<td class=" + "\"white\"" + "></td> "));
+                for (var j = 0; j < board.columns; j++) {	
+					if (knight.currentPosition.x == i && knight.currentPosition.y == j)
+						row.append($("<td class=" + "\"current\"" + "></td> "));
+					else if (board.isLegalMove(new Coordinate(i, j)))
+						row.append($("<td class=" + "\"posibleMove\"" + "></td> "));
+					else if(board.hasSpaceBeenVisited(new Coordinate(i, j)))
+						row.append($("<td class=" + "\"visited\"" + "></td> "));
+					else if (i % 2 == 0 && j % 2 == 0)
+						row.append($("<td class=" + "\"white\"" + "></td> "));
+					else if (i % 2 == 0 && j % 2 > 0)
+						row.append($("<td class=" + "\"black\"" + "></td> "));
+					else if (i % 2 > 0 && j % 2 ==  0)
+						row.append($("<td class=" + "\"black\"" + "></td> "));
+					else if (i % 2 > 0 && j % 2 > 0)
+						row.append($("<td class=" + "\"white\"" + "></td> "));
                 }
-
+						
                 gridElement.append(row);
             }
         }
